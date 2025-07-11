@@ -1,13 +1,11 @@
 'use client';
 
 import {
-  IconArrowLeft,
   IconBrandTabler,
   IconSettings
 } from "@tabler/icons-react";
 import { BadgeDollarSign, Blend, ListTodo, TicketX } from "lucide-react";
 import { motion } from "motion/react";
-import Image from "next/image";
 import { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "../ui/sidebar";
 import Navbar from "./Navbar";
@@ -39,16 +37,12 @@ export function SidebarDemo({ children }) {
       href: "#",
       icon: <TicketX className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },
-    {
-      label: "Settings",
-      href: "#",
-      icon: <IconSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
-    },
-    {
-      label: "Logout",
-      href: "#",
-      icon: <IconArrowLeft className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
-    },
+    // {
+    //   label: "Settings",
+    //   href: "#",
+    //   icon: <IconSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
+    // },
+   
   ];
 
   const [open, setOpen] = useState(false);
@@ -68,16 +62,10 @@ export function SidebarDemo({ children }) {
           <div>
             <SidebarLink
               link={{
-                label: "Manu Arora",
+                label: "Settings",
                 href: "#",
                 icon: (
-                  <Image
-                    src="https://assets.aceternity.com/manu.png"
-                    className="h-7 w-7 shrink-0 rounded-full"
-                    width={50}
-                    height={50}
-                    alt="Avatar"
-                  />
+                  <IconSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />
                 ),
               }}
             />

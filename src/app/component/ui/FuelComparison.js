@@ -31,7 +31,25 @@ export default function FuelComparison() {
   const [fontSize, setFontSize] = useState(16);
 
   const fontSizes = [10, 12, 14, 16, 18, 20, 22, 24];
+  const [selectedYear, setSelectedYear] = useState("2024");
+  const [selectedMonth, setSelectedMonth] = useState("January");
+  const [selectedDate, setSelectedDate] = useState("");
 
+  const years = ["2022", "2023", "2024", "2025"];
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   return (
     <div className="p-6 mt-16 text-gray-800 dark:text-gray-100">
       {/* Header */}
@@ -40,74 +58,111 @@ export default function FuelComparison() {
           燃料比較 -Rīsu・Nenryō Hikaku - Lease and Fuel Comparison
         </h3>
         <div className="flex items-center p-2 dark:bg-neutral-700 bg-white gap-3">
-      {/* Font Size Control */}
-      <div className="flex items-center">
-        <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
-          <button
-            tabIndex={0}
-            className="btn bg-neutral-900 text-white px-4 py-2 rounded-r-none"
-          >
-            Font size ▼
-          </button>
-          <ul
-            tabIndex={0}
-            className="dropdown-content menu text-sm text-black dark:text-white bg-gray-100 dark:bg-neutral-700 rounded-box z-10 w-20 p-2 shadow"
-          >
-            {fontSizes.map((size) => (
-              <li key={size}>
-                <button
-                  onClick={() => setFontSize(size)}
-                  className={`w-full px-2 py-1 text-center hover:bg-gray-200 dark:hover:bg-neutral-600 ${
-                    fontSize === size ? 'font-bold' : ''
-                  }`}
-                >
-                  {size}
-                </button>
+          {/* Font Size Control */}
+          <div className="flex items-center">
+            <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
+              <button
+                tabIndex={0}
+                className="btn bg-gray-200 hover:bg-gray-300 dark:bg-neutral-700 dark:hover:bg-neutral-600 text-sm rounded-r-none"
+              >
+                Font size ▼
+              </button>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu text-sm text-black dark:text-white bg-gray-100 dark:bg-neutral-700 rounded-box z-10 w-20 p-2 shadow"
+              >
+                {fontSizes.map((size) => (
+                  <li key={size}>
+                    <button
+                      onClick={() => setFontSize(size)}
+                      className={`w-full px-2 py-1 text-center hover:bg-gray-200 dark:hover:bg-neutral-600 ${
+                        fontSize === size ? "font-bold" : ""
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <input
+              type="number"
+              value={fontSize}
+              onChange={(e) => setFontSize(Number(e.target.value))}
+              className="w-16 text-center border border-neutral-900 rounded-l-none px-2 py-2 text-sm dark:bg-neutral-800 dark:text-white focus:outline-none"
+              min={6}
+              max={72}
+            />
+          </div>
+
+          {/* Year Dropdown */}
+          <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
+            <button
+              tabIndex={0}
+              className="btn bg-red-600 text-white px-4 py-2 rounded"
+            >
+              Year ▼
+            </button>
+            <ul className="dropdown-content menu text-black dark:text-white bg-gray-100 dark:bg-neutral-700 rounded-box z-10 w-40 p-2 shadow">
+              <li>
+                <a>2017</a>
               </li>
-            ))}
-          </ul>
+              <li>
+                <a>2018</a>
+              </li>
+              <li>
+                <a>2019</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Month Dropdown */}
+          <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
+            <button
+              tabIndex={0}
+              className="btn bg-red-600 text-white px-4 py-2 rounded"
+            >
+              Month ▼
+            </button>
+            <ul className="dropdown-content menu text-black dark:text-white bg-gray-100 dark:bg-neutral-700 rounded-box z-10 w-40 p-2 shadow">
+              <li>
+                <a>January</a>
+              </li>
+              <li>
+                <a>February</a>
+              </li>
+              <li>
+                <a>March</a>
+              </li>
+            </ul>
+          </div>
+          {/* Company Dropdown */}
+          <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
+            <button
+              tabIndex={0}
+              className="btn bg-green-600 text-white px-4 py-2 rounded"
+            >
+              Company ▼
+            </button>
+            <ul className="dropdown-content menu text-black dark:text-white bg-gray-100 dark:bg-neutral-700 rounded-box z-10 w-40 p-2 shadow">
+              {companies.map((company, idx) => (
+                <li key={idx}>
+                  <button
+                    className={`w-full text-left px-2 py-1 hover:bg-gray-200 dark:hover:bg-neutral-600 ${
+                      selectedCompany === company ? "font-bold" : ""
+                    }`}
+                    onClick={() => setSelectedCompany(company)}
+                  >
+                    {company}
+                  </button>
+                </li>
+              ))}
+              
+            </ul>
+          </div>
+          
         </div>
-
-        <input
-          type="number"
-          value={fontSize}
-          onChange={(e) => setFontSize(Number(e.target.value))}
-          className="w-16 text-center border border-neutral-900 rounded-l-none px-2 py-2 text-sm dark:bg-neutral-800 dark:text-white focus:outline-none"
-          min={6}
-          max={72}
-        />
-      </div>
-
-      {/* Year Dropdown */}
-      <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
-        <button
-          tabIndex={0}
-          className="btn bg-red-600 text-white px-4 py-2 rounded"
-        >
-          Year ▼
-        </button>
-        <ul className="dropdown-content menu text-black dark:text-white bg-gray-100 dark:bg-neutral-700 rounded-box z-10 w-40 p-2 shadow">
-          <li><a>2017</a></li>
-          <li><a>2018</a></li>
-          <li><a>2019</a></li>
-        </ul>
-      </div>
-
-      {/* Month Dropdown */}
-      <div className="dropdown dropdown-hover dropdown-bottom dropdown-end">
-        <button
-          tabIndex={0}
-          className="btn bg-red-600 text-white px-4 py-2 rounded"
-        >
-          Month ▼
-        </button>
-        <ul className="dropdown-content menu text-black dark:text-white bg-gray-100 dark:bg-neutral-700 rounded-box z-10 w-40 p-2 shadow">
-          <li><a>January</a></li>
-          <li><a>February</a></li>
-          <li><a>March</a></li>
-        </ul>
-      </div>
-    </div>
       </div>
 
       {/* Company Buttons */}
