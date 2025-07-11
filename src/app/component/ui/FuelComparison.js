@@ -1,5 +1,6 @@
 "use client";
 
+import { File, Folder } from "lucide-react";
 import { useState } from "react";
 
 export default function FuelComparison() {
@@ -106,13 +107,13 @@ export default function FuelComparison() {
             </button>
             <ul className="dropdown-content menu text-black dark:text-white bg-gray-100 dark:bg-neutral-700 rounded-box z-10 w-40 p-2 shadow">
               <li>
-                <a>2017</a>
+                <a> <Folder />2017</a>
               </li>
               <li>
-                <a>2018</a>
+                <a><Folder />2018</a>
               </li>
               <li>
-                <a>2019</a>
+                <a><Folder />2019</a>
               </li>
             </ul>
           </div>
@@ -127,13 +128,13 @@ export default function FuelComparison() {
             </button>
             <ul className="dropdown-content menu text-black dark:text-white bg-gray-100 dark:bg-neutral-700 rounded-box z-10 w-40 p-2 shadow">
               <li>
-                <a>January</a>
+                <a><File />January</a>
               </li>
               <li>
-                <a>February</a>
+                <a><File />February</a>
               </li>
               <li>
-                <a>March</a>
+                <a><File />March</a>
               </li>
             </ul>
           </div>

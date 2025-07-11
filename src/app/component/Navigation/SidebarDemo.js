@@ -24,17 +24,17 @@ export function SidebarDemo({ children }) {
     },
     {
       label: "Completed Work",
-      href: "#",
+      href: "completed-work",
       icon: <ListTodo className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },
     {
       label: "Orders and Monthly Sales",
-      href: "#",
+      href: "orders-and-monthly-sales",
       icon: <BadgeDollarSign className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },
     {
       label: "Invoice",
-      href: "#",
+      href: "invoice",
       icon: <TicketX className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },
     // {
