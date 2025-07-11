@@ -49,7 +49,7 @@ export default function Navbar() {
           <IconLink icon={<LayoutDashboard className="h-5 w-5" />} />
           <DropdownWrapper
             icon={<Mail className="h-5 w-5" />}
-            badgeColor="bg-green-500"
+            badgeColor="bg-green-600"
             title="Messages"
             items={[
               {
