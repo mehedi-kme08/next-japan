@@ -1,15 +1,15 @@
 'use client';
 
 import {
-    Bell,
-    Calendar,
-    ChevronDown,
-    LayoutDashboard,
-    Link2,
-    LogOut,
-    Mail,
-    Settings,
-    UserPlus
+  Bell,
+  Calendar,
+  ChevronDown,
+  LayoutDashboard,
+  Link2,
+  LogOut,
+  Mail,
+  Settings,
+  UserPlus
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -35,7 +35,7 @@ export default function Navbar() {
         {/* Create Project */}
         <div className="hidden lg:block relative group">
           <button className="bg-green-500 text-white px-4 py-2 rounded-md text-sm">
-            + Create New Project
+            + Create New Sheet
           </button>
           <div className="hidden group-hover:flex absolute right-0 top-full mt-2 w-64 bg-white dark:bg-neutral-900 shadow-lg border border-neutral-200 dark:border-neutral-700 rounded-md flex-col z-50">
             <h6 className="px-4 py-2 font-semibold">Projects</h6>
