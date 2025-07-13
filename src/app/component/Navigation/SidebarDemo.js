@@ -18,13 +18,13 @@ export function SidebarDemo({ children }) {
       icon: <IconBrandTabler className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },
     {
-      label: "Lease and Fuel",
-      href: "/lease-and-fuel", // use route path if using pages or app routing
+      label: "features-2",
+      href: "/features-2", // use route path if using pages or app routing
       icon: <Blend className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },
     {
-      label: "Completed Work",
-      href: "completed-work",
+      label: "features-2",
+      href: "features-3",
       icon: <ListTodo className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },
     {
@@ -37,12 +37,6 @@ export function SidebarDemo({ children }) {
       href: "invoice",
       icon: <TicketX className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },
-    // {
-    //   label: "Settings",
-    //   href: "#",
-    //   icon: <IconSettings className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
-    // },
-   
   ];
 
   const [open, setOpen] = useState(false);
