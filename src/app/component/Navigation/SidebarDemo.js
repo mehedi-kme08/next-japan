@@ -13,7 +13,7 @@ import Navbar from "./Navbar";
 export function SidebarDemo({ children }) {
   const links = [
     {
-      label: "Dashboard",
+      label: "features-1",
       href: "/",
       icon: <IconBrandTabler className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },
@@ -28,12 +28,12 @@ export function SidebarDemo({ children }) {
       icon: <ListTodo className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },
     {
-      label: "Orders and Monthly Sales",
-      href: "orders-and-monthly-sales",
+      label: "features-4",
+      href: "features-4",
       icon: <BadgeDollarSign className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },
     {
-      label: "Invoice",
+      label: "features-5",
       href: "invoice",
       icon: <TicketX className="h-5 w-5 shrink-0 text-neutral-700 dark:text-neutral-200" />,
     },

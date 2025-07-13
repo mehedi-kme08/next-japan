@@ -1,8 +1,9 @@
 "use client";
-import { FunnelPlus, Grid3X3, List, ListTodo } from "lucide-react";
+import { BarChart3, FunnelPlus, Grid3X3, List, ListTodo } from "lucide-react";
+import Link from "next/link";
 import React, { useState } from "react"; // Added missing import for React
 
-export default function UserPanel({ children, onViewChange, isInsideFolder = false, onAddNewSheet, onFontSizeChange, fontSize = 16, isDataView = false }) {
+export default function UserPanel({ children, onViewChange, isInsideFolder = false, onAddNewSheet, onFontSizeChange, fontSize = 16, isDataView = false, isAnalytics = true ,onAddNewcolum=false}) {
   console.log("user pannel render");
   const [currentView, setCurrentView] = useState("list"); // "list", "grid", "list-info"
 
@@ -97,7 +98,15 @@ export default function UserPanel({ children, onViewChange, isInsideFolder = fal
         >
           {getButtonText()}
         </button>
+        {onAddNewcolum && <button 
+          className="btn bg-green-700"
+          onClick={handleAddButtonClick}
+        >
+          + Add new Column
+        </button> }
         {children}
+
+       
 
         {/* Font Size Control */}
         <div className="flex items-center">
@@ -191,9 +200,19 @@ export default function UserPanel({ children, onViewChange, isInsideFolder = fal
             ))}
           </ul>
         </div>
+         {/* Analytics Button */}
+         {isAnalytics && (
+          <Link
+            href="/analytics"
+            className="flex items-center gap-2 px-3 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors"
+          >
+            <BarChart3 className="h-4 w-4" />
+            <span className="text-sm font-medium">Analytics</span>
+          </Link>
+        )}
       </div>
 
-      <form className="flex w-full  max-w-[14rem] lg:max-w-md">
+      <form className="flex w-full  max-w-[12rem] lg:max-w-[18rem]">
         <input
           type="text"
           placeholder="Search "

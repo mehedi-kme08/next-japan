@@ -21,6 +21,7 @@ export default function MonthlySheetPage({ params }) {
 
   const [currentView, setCurrentView] = useState("list");
   const [fontSize, setFontSize] = useState(16);
+  const [selectedRows, setSelectedRows] = useState(new Set());
 
   const handleBackClick = () => {
     router.back();
@@ -40,6 +41,30 @@ export default function MonthlySheetPage({ params }) {
   const deleteRow = (rowIndex) => {
     const newData = tableData.filter((_, index) => index !== rowIndex);
     setTableData(newData);
+  };
+
+  const handleRowSelection = (rowIndex) => {
+    const newSelectedRows = new Set(selectedRows);
+    if (newSelectedRows.has(rowIndex)) {
+      newSelectedRows.delete(rowIndex);
+    } else {
+      newSelectedRows.add(rowIndex);
+    }
+    setSelectedRows(newSelectedRows);
+  };
+
+  const handleSelectAll = () => {
+    if (selectedRows.size === tableData.length) {
+      setSelectedRows(new Set());
+    } else {
+      setSelectedRows(new Set(tableData.map((_, index) => index)));
+    }
+  };
+
+  const deleteSelectedRows = () => {
+    const newData = tableData.filter((_, index) => !selectedRows.has(index));
+    setTableData(newData);
+    setSelectedRows(new Set());
   };
 
   const handleViewChange = (viewType) => {
@@ -68,6 +93,7 @@ export default function MonthlySheetPage({ params }) {
           onAddNewSheet={handleAddNewSheet}
           onFontSizeChange={handleFontSizeChange}
           fontSize={fontSize}
+          onAddNewcolum={true}
         >
           
         </UserPanel>
@@ -88,6 +114,21 @@ export default function MonthlySheetPage({ params }) {
               </h1>
             </div>
           </div>
+          
+          {/* Bulk Actions */}
+          {selectedRows.size > 0 && (
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-600 dark:text-gray-400">
+                {selectedRows.size} row(s) selected
+              </span>
+              <button
+                onClick={deleteSelectedRows}
+                className="px-3 py-1 bg-red-500 text-white rounded text-sm hover:bg-red-600 transition-colors"
+              >
+                Delete Selected
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Table */}
@@ -99,6 +140,14 @@ export default function MonthlySheetPage({ params }) {
             >
               <thead className="bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-white">
                 <tr>
+                  <th className="p-2 border dark:border-neutral-700 w-12">
+                    <input
+                      type="checkbox"
+                      checked={selectedRows.size === tableData.length && tableData.length > 0}
+                      onChange={handleSelectAll}
+                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                  </th>
                   <th className="p-2 border dark:border-neutral-700">Date</th>
                   <th className="p-2 border dark:border-neutral-700">
                     Ｒ2年度 (2020)
@@ -112,17 +161,24 @@ export default function MonthlySheetPage({ params }) {
                   <th className="p-2 border dark:border-neutral-700">
                     （内廻送費）
                   </th>
-                  <th className="p-2 border dark:border-neutral-700">
-                    Actions
-                  </th>
                 </tr>
               </thead>
               <tbody>
                 {tableData.map((row, rowIndex) => (
                   <tr
                     key={rowIndex}
-                    className="hover:bg-gray-100 dark:hover:bg-neutral-800"
+                    className={`hover:bg-gray-100 dark:hover:bg-neutral-800 ${
+                      selectedRows.has(rowIndex) ? 'bg-blue-50 dark:bg-blue-900/20' : ''
+                    }`}
                   >
+                    <td className="p-2 border dark:border-neutral-700">
+                      <input
+                        type="checkbox"
+                        checked={selectedRows.has(rowIndex)}
+                        onChange={() => handleRowSelection(rowIndex)}
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                    </td>
                     {row.map((cell, cellIndex) => (
                       <td
                         key={cellIndex}
@@ -142,14 +198,6 @@ export default function MonthlySheetPage({ params }) {
                         />
                       </td>
                     ))}
-                    <td className="p-2 border dark:border-neutral-700">
-                      <button
-                        onClick={() => deleteRow(rowIndex)}
-                        className="px-2 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 transition-colors"
-                      >
-                        Delete
-                      </button>
-                    </td>
                   </tr>
                 ))}
               </tbody>
