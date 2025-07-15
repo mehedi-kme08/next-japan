@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next Japan
 
-## Getting Started
+A modern web application built with [Next.js](https://nextjs.org/) (App Router), React 19, and Tailwind CSS 4, designed for robust, scalable, and maintainable deployments. This README is tailored for DevOps engineers responsible for CI/CD, infrastructure, and operational excellence.
 
-First, run the development server:
+---
 
-```bash
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Tech Stack](#tech-stack)
+- [Directory Structure](#directory-structure)
+- [Local Development](#local-development)
+- [Build & Production](#build--production)
+- [Linting & Code Quality](#linting--code-quality)
+- [Environment Variables](#environment-variables)
+- [Deployment Notes](#deployment-notes)
+- [CI/CD Recommendations](#cicd-recommendations)
+- [Troubleshooting](#troubleshooting)
+
+---
+
+## Project Overview
+
+This project is a Next.js 15+ application using the App Router, React 19, and Tailwind CSS 4. It features modular UI components, dynamic routing, and a modern developer experience. The codebase is structured for scalability and maintainability.
+
+## Tech Stack
+
+- **Framework:** Next.js 15.3.5 (App Router)
+- **Language:** JavaScript (ES2022+)
+- **UI:** React 19, Tailwind CSS 4, DaisyUI
+- **Icons:** @tabler/icons-react, lucide-react
+- **Animation:** motion
+- **Linting:** ESLint 9, eslint-config-next
+
+## Directory Structure
+
+```
+next-japan/
+├── src/app/           # Main application code (pages, components, features)
+├── public/            # Static assets (images, fonts, CSS, JS)
+├── lib/               # Utility functions
+├── package.json       # Project metadata and scripts
+├── next.config.mjs    # Next.js configuration
+├── postcss.config.mjs # PostCSS configuration
+├── tailwind.config.js # Tailwind CSS configuration (if present)
+└── README.md          # This file
+```
+
+## Local Development
+
+### Prerequisites
+
+- Node.js v18+ (recommended: LTS)
+- npm v9+ or yarn
+
+### Install Dependencies
+
+```sh
+npm install
+# or
+yarn install
+```
+
+### Start Development Server
+
+```sh
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- App runs at: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Build & Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Build for Production
 
-## Learn More
+```sh
+npm run build
+# or
+yarn build
+```
 
-To learn more about Next.js, take a look at the following resources:
+- Output: `.next/` directory
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Start Production Server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+npm start
+# or
+yarn start
+```
 
-## Deploy on Vercel
+## Linting & Code Quality
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Run ESLint:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```sh
+npm run lint
+# or
+yarn lint
+```
+
+- ESLint config: `eslint.config.mjs`, `eslint-config-next`
+
+## Environment Variables
+
+- Place environment variables in `.env.local` (not committed).
+- Common variables:
+  - `NEXT_PUBLIC_API_URL` (example)
+  - `NODE_ENV`
+
+## Deployment Notes
+
+- **Static Assets:** Served from `/public`.
+- **App Router:** Uses Next.js App Router (`src/app/`).
+- **SSR/SSG:** Next.js supports both; configure as needed in `next.config.mjs`.
+- **Port:** Defaults to `3000` (can be overridden with `PORT` env var).
+- **Build Artifacts:** `.next/` (do not commit).
+- **Node Version:** Use `.nvmrc` or `engines` in `package.json` for version pinning (add if needed).
+
+## CI/CD Recommendations
+
+- **Install:** `npm ci` for clean installs in CI.
+- **Build:** `npm run build` (fail on error).
+- **Lint:** `npm run lint` (fail on error).
+- **Test:** (Add tests as needed; currently not present.)
+- **Artifacts:** Upload `.next/` and `public/` for deployment.
+- **Environment:** Set all required env vars in CI/CD pipeline.
+- **Deployment:** Use Vercel, Netlify, or custom Node.js server. For Docker, add a `Dockerfile` (not present by default).
+
+## Troubleshooting
+
+- **Port in use:** Change `PORT` env var or free port 3000.
+- **Dependency issues:** Delete `node_modules` and `package-lock.json`, then reinstall.
+- **Build errors:** Check Node.js version and environment variables.
+
+---
+
+## Contact
+
+For DevOps or deployment issues, contact the project maintainer or DevOps lead.
